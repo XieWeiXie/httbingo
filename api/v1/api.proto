@@ -1,0 +1,90 @@
+syntax = "proto3";
+
+package platform.v1;
+option go_package = "github.com/XieWeiXie/httpbin-go/v1;v1";
+import "google/protobuf/any.proto";
+
+
+service HttpBinService {
+  rpc HttpMethodGet(HttpMethodGetReq) returns (ResponseReply);
+  rpc HttpMethodPut(HttpMethodPutReq) returns (ResponseReply);
+  rpc HttpMethodDelete(HttpMethodDeleteReq) returns (ResponseReply);
+  rpc HttpMethodPost(HttpMethodPostReq) returns (ResponseReply);
+  rpc StatusCode(StatusCodeReq) returns (ResponseReply);
+  rpc Headers(HeadersReq) returns (ResponseReply);
+  rpc IP(IPReq) returns (ResponseReply);
+  rpc UserAgent(UserAgentReq) returns(ResponseReply);
+}
+
+message ResponseReply {
+  int32 code = 1; // 业务状态码
+  string message = 2; // 业务描述
+  google.protobuf.Any data = 3; // 业务数据
+}
+
+
+message HttpMethodGetReq {
+  int32 id = 1; // 主键
+}
+
+message HttpMethodGetReply {
+  int32 id = 1; // 主键
+  string name= 2; // 数据
+}
+
+message HttpMethodPutReq {
+  int32 id = 1; // 主键
+  string name = 2; // 修改项
+}
+
+message HttpMethodPutReply{
+  int32 id = 1;
+  string name = 2;
+}
+
+message HttpMethodDeleteReq {
+  int32 id = 1;
+}
+
+message HttpMethodDeleteReply {
+
+}
+
+message HttpMethodPostReq {
+  string name = 1;
+}
+
+message HttpMethodPostReply {
+  int32 id = 1;
+  string name = 2;
+}
+
+message StatusCodeReq {
+  int32 code = 1;
+}
+
+message StatusCodeReply {
+  int32 code = 1;
+}
+
+message HeadersReq {
+
+}
+
+message HeadersReply {
+  map<string, string> headers = 1;
+}
+
+message IPReq {
+
+}
+
+message IPReply {
+  string origin = 1;
+}
+
+message UserAgentReq {}
+
+message UserAgentReply {
+  string user_agent = 1;
+}
