@@ -71,9 +71,11 @@ message HeadersReq {
 
 }
 
+
 message HeadersReply {
-  map<string, string> headers = 1;
+  map<string, google.protobuf.Any > headers = 1;
 }
+
 
 message IPReq {
 

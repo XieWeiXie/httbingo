@@ -2,12 +2,14 @@ package api
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	v1 "github.com/XieWeiXie/httpbingo/api/v1"
 	"github.com/XieWeiXie/httpbingo/services/api"
 	"github.com/gin-gonic/gin"
 	"github.com/golang/protobuf/jsonpb"
 	"google.golang.org/grpc/status"
+	"google.golang.org/protobuf/types/known/anypb"
 	"net/http"
 )
 
@@ -22,10 +24,11 @@ type HttpBinUS struct {
 
 func (a HttpBinUS) HttpMethodGet(ctx *gin.Context) {
 	var req v1.HttpMethodGetReq
-	if err := ctx.ShouldBind(&req); err != nil {
+	req.Id = int32(ctx.GetInt("id"))
+	if req.Id == 0 {
 		ctx.JSON(http.StatusBadRequest, gin.H{
 			"code":    http.StatusBadRequest,
-			"message": fmt.Sprintf("请求参数错误: %v", err.Error()),
+			"message": fmt.Sprintf("请求参数错误"),
 		})
 		return
 	}
@@ -137,13 +140,6 @@ func (a HttpBinUS) StatusCode(ctx *gin.Context) {
 
 func (a HttpBinUS) Headers(ctx *gin.Context) {
 	var req v1.HeadersReq
-	if err := ctx.ShouldBind(&req); err != nil {
-		ctx.JSON(http.StatusBadRequest, gin.H{
-			"code":    http.StatusBadRequest,
-			"message": fmt.Sprintf("请求参数错误: %v", err.Error()),
-		})
-		return
-	}
 	service := api.Service{}
 	response, err := service.Headers(context.TODO(), &req)
 	if err != nil {
@@ -154,7 +150,17 @@ func (a HttpBinUS) Headers(ctx *gin.Context) {
 		})
 		return
 	}
-	ret, _ := ma.MarshalToString(response)
+
+	var m = make(map[string]*anypb.Any)
+	for k, v := range ctx.Request.Header {
+		n, _ := json.Marshal(v)
+		m[k] = &anypb.Any{Value: n}
+	}
+	response.Data, _ = anypb.New(&v1.HeadersReply{
+		Headers: m,
+	})
+	ret, err := ma.MarshalToString(response)
+	fmt.Println(err)
 	ctx.JSON(http.StatusOK, ret)
 }
 
@@ -200,6 +206,8 @@ func (a HttpBinUS) UserAgent(ctx *gin.Context) {
 		})
 		return
 	}
+	n, _ := anypb.New(&v1.UserAgentReply{UserAgent: ctx.Request.Header.Get("User-Agent")})
+	response.Data = n
 	ret, _ := ma.MarshalToString(response)
 	ctx.JSON(http.StatusOK, ret)
 }

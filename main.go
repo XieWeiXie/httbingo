@@ -27,9 +27,9 @@ func main() {
 
 	httpMethodGroup := v1.Group("httpMethods")
 	httpMethodGroup.GET("get", controller.HttpMethodGet)
-	httpMethodGroup.GET("put", controller.HttpMethodPut)
-	httpMethodGroup.GET("delete", controller.HttpMethodDelete)
-	httpMethodGroup.GET("post", controller.HttpMethodPost)
+	httpMethodGroup.PUT("put", controller.HttpMethodPut)
+	httpMethodGroup.DELETE("delete", controller.HttpMethodDelete)
+	httpMethodGroup.POST("post", controller.HttpMethodPost)
 
 	statusCodeGroup := v1.Group("statusCodes")
 	statusCodeGroup.GET("code", controller.StatusCode)

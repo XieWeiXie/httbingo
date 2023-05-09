@@ -73,7 +73,7 @@ func (s Service) StatusCode(ctx context.Context, req *v1.StatusCodeReq) (*v1.Res
 
 func (s Service) Headers(ctx context.Context, req *v1.HeadersReq) (*v1.ResponseReply, error) {
 	var reply = new(v1.ResponseReply)
-	m, _ := anypb.New(&v1.HeadersReply{Headers: make(map[string]string)})
+	m, _ := anypb.New(&v1.HeadersReply{})
 	reply.Data = m
 	return reply, nil
 }
