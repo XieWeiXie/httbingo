@@ -2,10 +2,11 @@ package main
 
 import (
 	"fmt"
-	"github.com/XieWeiXie/httpbingo/controller/api"
-	"github.com/gin-gonic/gin"
 	"net/http"
 	"time"
+
+	"github.com/XieWeiXie/httpbingo/controller/api"
+	"github.com/gin-gonic/gin"
 )
 
 func main() {
