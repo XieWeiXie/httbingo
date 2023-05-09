@@ -2,7 +2,8 @@ package api
 
 import (
 	"context"
-	"github.com/XieWeiXie/httpbin-go/api/v1"
+	v1 "github.com/XieWeiXie/httpbingo/api/v1"
+	"google.golang.org/protobuf/types/known/anypb"
 	"net"
 )
 
@@ -14,11 +15,11 @@ func (s Service) HttpMethodGet(ctx context.Context, req *v1.HttpMethodGetReq) (*
 	if err != nil {
 		return reply, err
 	}
-	reply.Code = 0
-	reply.Data = &v1.HttpMethodGetReply{
+	m, _ := anypb.New(&v1.HttpMethodGetReply{
 		Id:   int32(cache.Id),
 		Name: cache.Name,
-	}
+	})
+	reply.Data = m
 	return reply, nil
 }
 
@@ -28,10 +29,11 @@ func (s Service) HttpMethodPut(ctx context.Context, req *v1.HttpMethodPutReq) (*
 	if err != nil {
 		return reply, err
 	}
-	reply.Data = &v1.HttpMethodPutReply{
+	m, _ := anypb.New(&v1.HttpMethodPutReply{
 		Id:   int32(cache.Id),
 		Name: cache.Name,
-	}
+	})
+	reply.Data = m
 	return reply, nil
 }
 
@@ -41,7 +43,8 @@ func (s Service) HttpMethodDelete(ctx context.Context, req *v1.HttpMethodDeleteR
 	if err != nil {
 		return reply, err
 	}
-	reply.Data = &v1.HttpMethodDeleteReply{}
+	m, _ := anypb.New(&v1.HttpMethodDeleteReply{})
+	reply.Data = m
 	return reply, nil
 
 }
@@ -52,22 +55,26 @@ func (s Service) HttpMethodPost(ctx context.Context, req *v1.HttpMethodPostReq) 
 	if err != nil {
 		return reply, err
 	}
-	reply.Data = &v1.HttpMethodPostReply{
+	m, _ := anypb.New(&v1.HttpMethodPostReply{
 		Id:   int32(cache.Id),
 		Name: cache.Name,
-	}
+	})
+
+	reply.Data = m
 	return reply, nil
 }
 
 func (s Service) StatusCode(ctx context.Context, req *v1.StatusCodeReq) (*v1.ResponseReply, error) {
 	var reply = new(v1.ResponseReply)
-	reply.Data = &v1.StatusCodeReply{Code: int32(req.Code)}
+	m, _ := anypb.New(&v1.StatusCodeReply{Code: req.Code})
+	reply.Data = m
 	return reply, nil
 }
 
 func (s Service) Headers(ctx context.Context, req *v1.HeadersReq) (*v1.ResponseReply, error) {
 	var reply = new(v1.ResponseReply)
-	reply.Data = &v1.HeadersReply{Headers: make(map[string]string)}
+	m, _ := anypb.New(&v1.HeadersReply{Headers: make(map[string]string)})
+	reply.Data = m
 	return reply, nil
 }
 
@@ -84,12 +91,14 @@ func (s Service) IP(ctx context.Context, req *v1.IPReq) (*v1.ResponseReply, erro
 			break
 		}
 	}
-	reply.Data = &v1.IPReply{Origin: origin}
+	m, _ := anypb.New(&v1.IPReply{Origin: origin})
+	reply.Data = m
 	return reply, nil
 }
 
 func (s Service) UserAgent(ctx context.Context, req *v1.UserAgentReq) (*v1.ResponseReply, error) {
 	var reply = new(v1.ResponseReply)
-	reply.Data = &v1.UserAgentReply{UserAgent: ""}
+	m, _ := anypb.New(&v1.UserAgentReply{UserAgent: ""})
+	reply.Data = m
 	return reply, nil
 }
