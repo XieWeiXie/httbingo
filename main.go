@@ -3,16 +3,16 @@ package main
 import (
 	"context"
 	"fmt"
-	sdkginext "github.com/larksuite/oapi-sdk-gin"
-	lark "github.com/larksuite/oapi-sdk-go/v3"
-	larkcore "github.com/larksuite/oapi-sdk-go/v3/core"
-	"github.com/larksuite/oapi-sdk-go/v3/event/dispatcher"
-	larkim "github.com/larksuite/oapi-sdk-go/v3/service/im/v1"
 	"net/http"
 	"time"
 
 	"github.com/XieWeiXie/httpbingo/controller/api"
 	"github.com/gin-gonic/gin"
+	"github.com/larksuite/oapi-sdk-gin"
+	"github.com/larksuite/oapi-sdk-go/v3"
+	"github.com/larksuite/oapi-sdk-go/v3/core"
+	"github.com/larksuite/oapi-sdk-go/v3/event/dispatcher"
+	"github.com/larksuite/oapi-sdk-go/v3/service/im/v1"
 )
 
 func main() {
