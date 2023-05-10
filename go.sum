@@ -34,6 +34,10 @@ github.com/klauspost/cpuid/v2 v2.0.9 h1:lgaqFMSdTdQYdZ04uHyN2d/eKdOMyi2YLSvlQIBF
 github.com/klauspost/cpuid/v2 v2.0.9/go.mod h1:FInQzS24/EEf25PyTYn52gqo7WaD8xa0213Md/qVLRg=
 github.com/kr/pretty v0.3.0 h1:WgNl7dwNpEZ6jJ9k1snq4pZsg7DOEN8hP9Xw0Tsjwk0=
 github.com/kr/text v0.2.0 h1:5Nx0Ya0ZqY2ygV366QzturHI13Jq95ApcVaJBhpS+AY=
+github.com/larksuite/oapi-sdk-gin v1.0.0 h1:pf2JyCSECZ2ra16JoQEgbl7PPaaOpoAEBno+Y91HFO0=
+github.com/larksuite/oapi-sdk-gin v1.0.0/go.mod h1:17QKeJMEkIYBUOrUoP0HBVErfzdu7cuJ9XiXitUwe/s=
+github.com/larksuite/oapi-sdk-go/v3 v3.0.20 h1:qwH7lEr2WNWgbxI/v2jGWujFmKMht2ZCw3bYS1fXkDE=
+github.com/larksuite/oapi-sdk-go/v3 v3.0.20/go.mod h1:FKi8vBgtkBt/xNRQUwdWvoDmsPh7/wP75Sn5IBIBQLk=
 github.com/leodido/go-urn v1.2.1 h1:BqpAaACuzVSgi/VLzGZIobT2z4v53pjosyNd9Yv6n/w=
 github.com/leodido/go-urn v1.2.1/go.mod h1:zt4jvISO2HfUBqxjfIshjdMTYS56ZS/qv49ictyFfxY=
 github.com/mattn/go-isatty v0.0.17 h1:BTarxUcIeDqL27Mc+vyvdWYSL28zpIhv3RoTdsLMPng=
