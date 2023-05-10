@@ -11,6 +11,7 @@ import (
 	"google.golang.org/grpc/status"
 	"google.golang.org/protobuf/types/known/anypb"
 	"net/http"
+	"strconv"
 )
 
 var ma = jsonpb.Marshaler{
@@ -24,7 +25,8 @@ type HttpBinUS struct {
 
 func (a HttpBinUS) HttpMethodGet(ctx *gin.Context) {
 	var req v1.HttpMethodGetReq
-	req.Id = int32(ctx.GetInt("id"))
+	id, _ := strconv.Atoi(ctx.Query("id"))
+	req.Id = int32(id)
 	if req.Id == 0 {
 		ctx.JSON(http.StatusBadRequest, gin.H{
 			"code":    http.StatusBadRequest,
@@ -43,7 +45,7 @@ func (a HttpBinUS) HttpMethodGet(ctx *gin.Context) {
 		return
 	}
 	ret, _ := ma.MarshalToString(response)
-	ctx.JSON(http.StatusOK, ret)
+	ctx.JSONP(http.StatusOK, json.RawMessage(ret))
 }
 
 func (a HttpBinUS) HttpMethodPut(ctx *gin.Context) {
@@ -66,7 +68,7 @@ func (a HttpBinUS) HttpMethodPut(ctx *gin.Context) {
 		return
 	}
 	ret, _ := ma.MarshalToString(response)
-	ctx.JSON(http.StatusOK, ret)
+	ctx.JSON(http.StatusOK, json.RawMessage(ret))
 }
 
 func (a HttpBinUS) HttpMethodDelete(ctx *gin.Context) {
@@ -89,7 +91,7 @@ func (a HttpBinUS) HttpMethodDelete(ctx *gin.Context) {
 		return
 	}
 	ret, _ := ma.MarshalToString(response)
-	ctx.JSON(http.StatusOK, ret)
+	ctx.JSON(http.StatusOK, json.RawMessage(ret))
 }
 
 func (a HttpBinUS) HttpMethodPost(ctx *gin.Context) {
@@ -112,7 +114,7 @@ func (a HttpBinUS) HttpMethodPost(ctx *gin.Context) {
 		return
 	}
 	ret, _ := ma.MarshalToString(response)
-	ctx.JSON(http.StatusOK, ret)
+	ctx.JSON(http.StatusOK, json.RawMessage(ret))
 }
 
 func (a HttpBinUS) StatusCode(ctx *gin.Context) {
@@ -135,7 +137,7 @@ func (a HttpBinUS) StatusCode(ctx *gin.Context) {
 		return
 	}
 	ret, _ := ma.MarshalToString(response)
-	ctx.JSON(http.StatusOK, ret)
+	ctx.JSON(http.StatusOK, json.RawMessage(ret))
 }
 
 func (a HttpBinUS) Headers(ctx *gin.Context) {
@@ -159,9 +161,8 @@ func (a HttpBinUS) Headers(ctx *gin.Context) {
 	response.Data, _ = anypb.New(&v1.HeadersReply{
 		Headers: m,
 	})
-	ret, err := ma.MarshalToString(response)
-	fmt.Println(err)
-	ctx.JSON(http.StatusOK, ret)
+	ret, _ := ma.MarshalToString(response)
+	ctx.JSON(http.StatusOK, json.RawMessage(ret))
 }
 
 func (a HttpBinUS) IP(ctx *gin.Context) {
@@ -184,7 +185,7 @@ func (a HttpBinUS) IP(ctx *gin.Context) {
 		return
 	}
 	ret, _ := ma.MarshalToString(response)
-	ctx.JSON(http.StatusOK, ret)
+	ctx.JSON(http.StatusOK, json.RawMessage(ret))
 }
 
 func (a HttpBinUS) UserAgent(ctx *gin.Context) {
@@ -209,5 +210,5 @@ func (a HttpBinUS) UserAgent(ctx *gin.Context) {
 	n, _ := anypb.New(&v1.UserAgentReply{UserAgent: ctx.Request.Header.Get("User-Agent")})
 	response.Data = n
 	ret, _ := ma.MarshalToString(response)
-	ctx.JSON(http.StatusOK, ret)
+	ctx.JSON(http.StatusOK, json.RawMessage(ret))
 }
