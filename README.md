@@ -57,6 +57,25 @@
 
 ```
 
+
+- ngrok
+
+
+```shell
+>> ngrok config add-authtoken **
+>> ngrok http 9091
+
+>> curl https://f695-2409-895a-6a0-14e7-2d-73cd-ffac-7d17.ngrok-free.app/http-bin/v1/heart/beat
+
+{
+  "code": 0,
+  "data": "2023-05-10 22:51:28",
+  "message": ""
+}
+
+```
+
+
 ### 飞书事件订阅
 
 - 机器人
