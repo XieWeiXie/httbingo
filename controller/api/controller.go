@@ -73,10 +73,12 @@ func (a HttpBinUS) HttpMethodPut(ctx *gin.Context) {
 
 func (a HttpBinUS) HttpMethodDelete(ctx *gin.Context) {
 	var req v1.HttpMethodDeleteReq
-	if err := ctx.ShouldBind(&req); err != nil {
+	id, _ := strconv.Atoi(ctx.Query("id"))
+	req.Id = int32(id)
+	if id == 0 {
 		ctx.JSON(http.StatusBadRequest, gin.H{
 			"code":    http.StatusBadRequest,
-			"message": fmt.Sprintf("请求参数错误: %v", err.Error()),
+			"message": fmt.Sprintf("请求参数错误"),
 		})
 		return
 	}
@@ -119,13 +121,8 @@ func (a HttpBinUS) HttpMethodPost(ctx *gin.Context) {
 
 func (a HttpBinUS) StatusCode(ctx *gin.Context) {
 	var req v1.StatusCodeReq
-	if err := ctx.ShouldBind(&req); err != nil {
-		ctx.JSON(http.StatusBadRequest, gin.H{
-			"code":    http.StatusBadRequest,
-			"message": fmt.Sprintf("请求参数错误: %v", err.Error()),
-		})
-		return
-	}
+	code, _ := strconv.Atoi(ctx.Query("code"))
+	req.Code = int32(code)
 	service := api.Service{}
 	response, err := service.StatusCode(context.TODO(), &req)
 	if err != nil {
@@ -161,19 +158,13 @@ func (a HttpBinUS) Headers(ctx *gin.Context) {
 	response.Data, _ = anypb.New(&v1.HeadersReply{
 		Headers: m,
 	})
-	ret, _ := ma.MarshalToString(response)
+	ret, err := ma.MarshalToString(response)
+	fmt.Println(err)
 	ctx.JSON(http.StatusOK, json.RawMessage(ret))
 }
 
 func (a HttpBinUS) IP(ctx *gin.Context) {
 	var req v1.IPReq
-	if err := ctx.ShouldBind(&req); err != nil {
-		ctx.JSON(http.StatusBadRequest, gin.H{
-			"code":    http.StatusBadRequest,
-			"message": fmt.Sprintf("请求参数错误: %v", err.Error()),
-		})
-		return
-	}
 	service := api.Service{}
 	response, err := service.IP(context.TODO(), &req)
 	if err != nil {
@@ -190,13 +181,6 @@ func (a HttpBinUS) IP(ctx *gin.Context) {
 
 func (a HttpBinUS) UserAgent(ctx *gin.Context) {
 	var req v1.UserAgentReq
-	if err := ctx.ShouldBind(&req); err != nil {
-		ctx.JSON(http.StatusBadRequest, gin.H{
-			"code":    http.StatusBadRequest,
-			"message": fmt.Sprintf("请求参数错误: %v", err.Error()),
-		})
-		return
-	}
 	service := api.Service{}
 	response, err := service.UserAgent(context.TODO(), &req)
 	if err != nil {
