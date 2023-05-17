@@ -1,0 +1,9 @@
+{
+  "serviceName": "http-bin-go",
+  "functionNames": [
+    "http-bin-go/v1"
+  ],
+  "domains": [
+    "v1.http-bin-go.1332599254694036.cn-hangzhou.fc.devsapp.net"
+  ]
+}

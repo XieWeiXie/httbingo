@@ -1,0 +1,7 @@
+version: v1
+name: github.com/XieWeiXie/httpbingo
+build:
+  roots:
+    - api
+deps:
+  - third_party

@@ -2,18 +2,52 @@ syntax = "proto3";
 
 package httpbingo.v1;
 option go_package = "github.com/XieWeiXie/httpbingo/v1;v1";
-import "google/protobuf/any.proto";
 
+
+import "google/protobuf/any.proto";
+import "google/api/annotations.proto";
 
 service HttpBinService {
-  rpc HttpMethodGet(HttpMethodGetReq) returns (ResponseReply);
-  rpc HttpMethodPut(HttpMethodPutReq) returns (ResponseReply);
-  rpc HttpMethodDelete(HttpMethodDeleteReq) returns (ResponseReply);
-  rpc HttpMethodPost(HttpMethodPostReq) returns (ResponseReply);
-  rpc StatusCode(StatusCodeReq) returns (ResponseReply);
-  rpc Headers(HeadersReq) returns (ResponseReply);
-  rpc IP(IPReq) returns (ResponseReply);
-  rpc UserAgent(UserAgentReq) returns(ResponseReply);
+  rpc HttpMethodGet(HttpMethodGetReq) returns (ResponseReply) {
+
+    option (google.api.http) = { get: "/v1/httpMethods/get/{id}"};
+
+  };
+  rpc HttpMethodPut(HttpMethodPutReq) returns (ResponseReply) {
+
+    option (google.api.http) = { put: "/v1/httpMethods/put" body: "*"};
+
+  };
+  rpc HttpMethodDelete(HttpMethodDeleteReq) returns (ResponseReply) {
+
+    option (google.api.http) = { delete: "/v1/httpMethods/delete/{id}"};
+
+  };
+  rpc HttpMethodPost(HttpMethodPostReq) returns (ResponseReply) {
+
+    option (google.api.http) = { post: "/v1/httpMethods/post", body: "http_method_post_req"};
+
+  };
+  rpc StatusCode(StatusCodeReq) returns (ResponseReply) {
+
+    option (google.api.http) = { get: "/v1/statusCodes/code/{code}"};
+
+  };
+  rpc Headers(HeadersReq) returns (ResponseReply) {
+
+    option (google.api.http) = {get: "/v1/headers/header"};
+
+  };
+  rpc IP(IPReq) returns (ResponseReply) {
+
+    option (google.api.http) = {get :"/v1/ips/ip"};
+
+  };
+  rpc UserAgent(UserAgentReq) returns(ResponseReply) {
+
+    option (google.api.http) = {get: "/v1/userAgents/userAgent",};
+
+  };
 }
 
 message ResponseReply {

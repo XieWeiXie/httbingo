@@ -13,10 +13,12 @@
 3、services: 实现层
   - 具体实现逻辑层
 4、main.go: 入口
+5、third_party: 第三方 proto
+6、openapi.yaml: 接口定义文件
+7、s.yaml: serverless 配置文件
 
 ```shell
 >> tree .
-
 ├── README.md
 ├── api
 │   └── v1
@@ -24,6 +26,8 @@
 │       ├── api.proto
 │       └── api_grpc.pb.go
 ├── buf.gen.yaml
+├── buf.work.yaml
+├── buf.yaml
 ├── controller
 │   └── api
 │       └── controller.go
@@ -31,12 +35,43 @@
 ├── go.sum
 ├── main.go
 ├── openapi.yaml
-└── services
-    └── api
-        ├── cache.go
-        └── service.go
-
-```
+├── s.yaml
+├── services
+│   └── api
+│       ├── cache.go
+│       └── service.go
+└── third_party
+    ├── README.md
+    ├── errors
+    │   └── errors.proto
+    ├── google
+    │   ├── api
+    │   │   ├── annotations.proto
+    │   │   ├── client.proto
+    │   │   ├── field_behavior.proto
+    │   │   ├── http.proto
+    │   │   └── httpbody.proto
+    │   └── protobuf
+    │       ├── any.proto
+    │       ├── api.proto
+    │       ├── compiler
+    │       │   └── plugin.proto
+    │       ├── descriptor.proto
+    │       ├── duration.proto
+    │       ├── empty.proto
+    │       ├── field_mask.proto
+    │       ├── source_context.proto
+    │       ├── struct.proto
+    │       ├── timestamp.proto
+    │       ├── type.proto
+    │       └── wrappers.proto
+    ├── openapi
+    │   └── v3
+    │       ├── annotations.proto
+    │       └── openapi.proto
+    └── validate
+        ├── README.md
+        └── validate.proto```
 
 
 ### Protobuf
@@ -44,6 +79,7 @@
 ```shell
 buf.work.yaml
 buf.gen.yaml
+buf.yaml
 
 >> buf generate
 
@@ -85,10 +121,3 @@ buf.gen.yaml
 }
 
 ```
-
-
-### 飞书事件订阅
-
-- 机器人
-- 权限申请
-

@@ -6,8 +6,6 @@ require (
 	github.com/gin-gonic/gin v1.9.0
 	github.com/golang/protobuf v1.5.3
 	github.com/google/uuid v1.3.0
-	github.com/larksuite/oapi-sdk-gin v1.0.0
-	github.com/larksuite/oapi-sdk-go/v3 v3.0.20
 	github.com/pkg/errors v0.9.1
 	google.golang.org/grpc v1.55.0
 	google.golang.org/protobuf v1.30.0

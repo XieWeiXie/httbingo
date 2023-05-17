@@ -1,0 +1,40 @@
+{
+  "statefulConfig": {
+    "serviceName": "http-bin-go",
+    "description": "通过聊天的形式上传图床",
+    "role": "",
+    "logConfig": {
+      "project": "",
+      "logstore": "",
+      "enableRequestMetrics": false,
+      "enableInstanceMetrics": false,
+      "logBeginRule": "None"
+    },
+    "serviceId": "008396dc-9804-491f-8efc-60e9ae57f055",
+    "createdTime": "2023-05-17T10:15:12Z",
+    "lastModifiedTime": "2023-05-17T10:15:19Z",
+    "vpcConfig": {
+      "vpcId": "",
+      "vSwitchIds": [],
+      "securityGroupId": "",
+      "role": null,
+      "anytunnelViaENI": null
+    },
+    "internetAccess": true,
+    "nasConfig": {
+      "userId": -1,
+      "groupId": -1,
+      "mountPoints": []
+    },
+    "ossMountConfig": {
+      "mountPoints": []
+    },
+    "vendorConfig": null,
+    "tracingConfig": {
+      "type": null,
+      "params": null,
+      "jaegerConfig": null
+    },
+    "name": "http-bin-go"
+  }
+}
