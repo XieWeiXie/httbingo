@@ -77,7 +77,8 @@
     │       └── openapi.proto
     └── validate
         ├── README.md
-        └── validate.proto```
+        └── validate.proto
+```
 
 
 ### Protobuf
