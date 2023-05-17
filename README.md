@@ -8,13 +8,19 @@
 1、api: 协议约定
   - proto 约定
   - buf generate
+
 2、controller: 接口层
   - http 实现层
+
 3、services: 实现层
   - 具体实现逻辑层
+
 4、main.go: 入口
+
 5、third_party: 第三方 proto
+
 6、openapi.yaml: 接口定义文件
+
 7、s.yaml: serverless 配置文件
 
 ```shell

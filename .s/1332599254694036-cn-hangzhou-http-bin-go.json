@@ -1,7 +1,7 @@
 {
   "statefulConfig": {
     "serviceName": "http-bin-go",
-    "description": "通过聊天的形式上传图床",
+    "description": "HttpBinGo 版本 HTTP 接口测试工具",
     "role": "",
     "logConfig": {
       "project": "",
@@ -12,7 +12,7 @@
     },
     "serviceId": "008396dc-9804-491f-8efc-60e9ae57f055",
     "createdTime": "2023-05-17T10:15:12Z",
-    "lastModifiedTime": "2023-05-17T10:15:19Z",
+    "lastModifiedTime": "2023-05-17T10:55:14Z",
     "vpcConfig": {
       "vpcId": "",
       "vSwitchIds": [],
