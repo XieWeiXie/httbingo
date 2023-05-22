@@ -128,3 +128,74 @@ buf.yaml
 }
 
 ```
+
+- Dockerfile
+
+> 多阶段构建
+
+```shell
+
+>> docker build -f Dockerfile -t httpbingo:v1 .
+
+>> docker images | grep httpbin 
+
+httpbin                                                       v1                                 71ac5a7bbce4        25 minutes ago      21.9MB
+
+```
+
+
+- Dive
+
+> 镜像分层查看
+
+```shell
+
+>> dive httpbin:v1
+
+
+┃ ● Layers ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ │ Current Layer Contents ├──────────────────────────────────────────────────────────────
+Cmp   Size  Command                                                                      Permission     UID:GID       Size  Filetree
+    7.3 MB  FROM a30035fe3df17b5                                                         drwxr-xr-x         0:0     817 kB  ├── bin
+    1.6 MB  apk update --no-cache && apk add --no-cache ca-certificates tzdata           -rwxrwxrwx         0:0        0 B  │   ├── arch → /bin/busybox
+       0 B  #(nop) WORKDIR /app                                                          -rwxrwxrwx         0:0        0 B  │   ├── ash → /bin/busybox
+     13 MB  #(nop) COPY dir:208dfa407a669df3c06fc31dd9e84f288481ee9f6d2647616d250c135bdd -rwxrwxrwx         0:0        0 B  │   ├── base64 → /bin/busybox
+                                                                                         -rwxrwxrwx         0:0        0 B  │   ├── bbconfig → /bin/busybox
+│ Layer Details ├─────────────────────────────────────────────────────────────────────── -rwxr-xr-x         0:0     817 kB  │   ├── busybox
+                                                                                         -rwxrwxrwx         0:0        0 B  │   ├── cat → /bin/busybox
+Tags:   (unavailable)                                                                    -rwxrwxrwx         0:0        0 B  │   ├── chattr → /bin/busybox
+Id:     a30035fe3df17b586df9ec4bf5996fa5920f686f42e3270038722884bcf977d5                 -rwxrwxrwx         0:0        0 B  │   ├── chgrp → /bin/busybox
+Digest: sha256:bb01bd7e32b58b6694c8c3622c230171f1cec24001a82068a8d30d338f420d6c          -rwxrwxrwx         0:0        0 B  │   ├── chmod → /bin/busybox
+Command:                                                                                 -rwxrwxrwx         0:0        0 B  │   ├── chown → /bin/busybox
+#(nop) ADD file:7625ddfd589fb824ee39f1b1eb387b98f3676420ff52f26eb9d975151e889667 in /    -rwxrwxrwx         0:0        0 B  │   ├── cp → /bin/busybox
+                                                                                         -rwxrwxrwx         0:0        0 B  │   ├── date → /bin/busybox
+│ Image Details ├─────────────────────────────────────────────────────────────────────── -rwxrwxrwx         0:0        0 B  │   ├── dd → /bin/busybox
+                                                                                         -rwxrwxrwx         0:0        0 B  │   ├── df → /bin/busybox
+                                                                                         -rwxrwxrwx         0:0        0 B  │   ├── dmesg → /bin/busybox
+Total Image size: 22 MB                                                                  -rwxrwxrwx         0:0        0 B  │   ├── dnsdomainname → /bin/busybox
+Potential wasted space: 547 kB                                                           -rwxrwxrwx         0:0        0 B  │   ├── dumpkmap → /bin/busybox
+Image efficiency score: 98 %                                                             -rwxrwxrwx         0:0        0 B  │   ├── echo → /bin/busybox
+                                                                                         -rwxrwxrwx         0:0        0 B  │   ├── ed → /bin/busybox
+Count   Total Space  Path                                                                -rwxrwxrwx         0:0        0 B  │   ├── egrep → /bin/busybox
+    2        429 kB  /etc/ssl/certs/ca-certificates.crt                                  -rwxrwxrwx         0:0        0 B  │   ├── false → /bin/busybox
+    2         93 kB  /lib/apk/db/installed                                               -rwxrwxrwx         0:0        0 B  │   ├── fatattr → /bin/busybox
+    2         25 kB  /lib/apk/db/scripts.tar                                             -rwxrwxrwx         0:0        0 B  │   ├── fdflush → /bin/busybox
+    2         288 B  /lib/apk/db/triggers                                                -rwxrwxrwx         0:0        0 B  │   ├── fgrep → /bin/busybox
+    2         141 B  /etc/apk/world                                                      -rwxrwxrwx         0:0        0 B  │   ├── fsync → /bin/busybox
+                                                                                         -rwxrwxrwx         0:0        0 B  │   ├── getopt → /bin/busybox
+                                                                                         -rwxrwxrwx         0:0        0 B  │   ├── grep → /bin/busybox
+                                                                                         -rwxrwxrwx         0:0        0 B  │   ├── gunzip → /bin/busybox
+                                                                                         -rwxrwxrwx         0:0        0 B  │   ├── gzip → /bin/busybox
+                                                                                         -rwxrwxrwx         0:0        0 B  │   ├── hostname → /bin/busybox
+                                                                                         -rwxrwxrwx         0:0        0 B  │   ├── ionice → /bin/busybox
+                                                                                         -rwxrwxrwx         0:0        0 B  │   ├── iostat → /bin/busybox
+                                                                                         -rwxrwxrwx         0:0        0 B  │   ├── ipcalc → /bin/busybox
+                                                                                         -rwxrwxrwx         0:0        0 B  │   ├── kbd_mode → /bin/busybox
+                                                                                         -rwxrwxrwx         0:0        0 B  │   ├── kill → /bin/busybox
+                                                                                         -rwxrwxrwx         0:0        0 B  │   ├── link → /bin/busybox
+                                                                                         -rwxrwxrwx         0:0        0 B  │   ├── linux32 → /bin/busybox
+                                                                                         -rwxrwxrwx         0:0        0 B  │   ├── linux64 → /bin/busybox
+                                                                                         -rwxrwxrwx         0:0        0 B  │   ├── ln → /bin/busybox
+                                                                                         -rwxrwxrwx         0:0        0 B  │   ├── login → /bin/busybox
+                                                                                         -rwxrwxrwx         0:0        0 B  │   ├── ls → /bin/busybox
+
+```
