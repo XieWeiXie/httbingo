@@ -13,12 +13,11 @@ COPY go.mod .
 COPY go.sum .
 COPY . .
 
-RUN CGO_ENABLE=0 GOOS=linux go build -ldflags="-s -w" -o /app/target/${APP} main.go
+RUN CGO_ENABLE=0 GOOS=linux go build -ldflags="-s -w" -o /app/target/${APP} main.go && go clean --cache && go clean --modcache
 
 FROM alpine:latest
 
 RUN apk update --no-cache && apk add --no-cache ca-certificates tzdata
-RUN apt-get update && apt-get install -y ca-certificates
 
 WORKDIR /app
 COPY --from=builder /app/target/${APP} /app/${APP}
