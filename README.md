@@ -199,3 +199,20 @@ Count   Total Space  Path                                                       
                                                                                          -rwxrwxrwx         0:0        0 B  │   ├── ls → /bin/busybox
 
 ```
+
+
+```shell
+
+>> docker history 86b7571bf4e5
+
+IMAGE               CREATED             CREATED BY                                      SIZE                COMMENT
+86b7571bf4e5        3 hours ago         /bin/sh -c #(nop)  CMD ["/app/httpbingo"]       0B
+aa8c73dde838        3 hours ago         /bin/sh -c #(nop)  EXPOSE 9091                  0B
+d8319546655f        3 hours ago         /bin/sh -c #(nop) COPY dir:4331fcfade96bce65…   13MB
+d8cd0444d48c        3 hours ago         /bin/sh -c #(nop) WORKDIR /app                  0B
+4c8f3da5fbee        3 hours ago         /bin/sh -c apk update --no-cache && apk add …   1.64MB
+5e2b554c1c45        12 days ago         /bin/sh -c #(nop)  CMD ["/bin/sh"]              0B
+<missing>           12 days ago         /bin/sh -c #(nop) ADD file:7625ddfd589fb824e…   7.33MB
+
+```
+
